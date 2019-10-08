@@ -7,13 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php
     include("../include/header.php");
-    
+    $bno = $_GET["bno"];
+    $query = "SELECT A.writer_id, A.title, A.content, A.regDate, A.updateDate, A.viewCnt FROM board_free A WHERE bno =".$bno;
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_NUM);
     ?>
 </head>
 
 <body>
     <?php
-    $bno = $_GET["bno"];
+    
     ?>
     <div class="container">
         <div class="card">
@@ -22,20 +26,21 @@
                     
                     <div class="form-group">
                         <label for="boardID">writer</label>
-                        <div class="form-control"> <?php ?> </div>
+                        <div class="form-control"> <?php echo $result[0][0] ?> </div>
                     </div>
                     <div class="form-group">
                         <label for="boardTitle">제목</label>
-                        <input type="text" class="form-control" id="boardTitle" name="title" value="Title" disabled>
+                        <div class="form-control"> <?php echo $result[0][1] ?> </div>
                     </div>
                     <div class="form-group">
                         <label for="boardContent">본문</label>
-                        <div class="form-control" id="boardContent" rows="5" name="content" disabled>Content</div>
+                        <div class="form-control"> <?php echo $result[0][2] ?> </div>
                     </div>
                   
        
                   
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-warning">수정</button>
+                    <button type="submit" class="btn btn-secondary" onclick="history.back();">뒤로</button>
                 </fieldset>
  
         </div>

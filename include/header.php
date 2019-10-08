@@ -30,14 +30,12 @@ try {
         }else if($dayDiff>=60*60*24){
           $result = ($dayDiff/(60*60*24))."일 전";
         }else {
-          if($nowTime-$tdTime>=3600 && $nowTime-$tdTime<3600*7){
-            $result = date("H:i",strtotime($tdValue));
-          }else if($nowTime-$tdTime<3600&&$nowTime-$tdTime>=60){
+          if($nowTime-$tdTime<3600&&$nowTime-$tdTime>=60){
             $result = floor(($nowTime-$tdTime)/60)."분 전";
           }else if(60>$nowTime-$tdTime&&$nowTime-$tdTime>=0){
             $result = "방금전";
           }else{
-           $result = $nowTime-$tdTime;
+            $result = date("H:i",strtotime($tdValue));
           }
         }
         break;
