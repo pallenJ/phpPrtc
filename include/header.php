@@ -1,5 +1,5 @@
 <?php
-
+header('Content-Type: text/html; charset=utf-8');
 $dsn = "mysql:host=localhost;port=3306;dbname=php_prtc;charset=utf8";
 try {
     $db = new PDO($dsn, "pjm", "pjmpjm");
@@ -9,6 +9,49 @@ try {
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
+
+  function tdValueTrs($variable,$tdValue){
+    $result = $tdValue;
+    $tdTime = strtotime($tdValue);
+    
+    switch ($variable) {
+      case 3:
+      case 4:
+
+        
+        $tdDay = strtotime(date("Y-m-d",$tdTime));
+        $nowDay = strtotime(date("Y-m-d"));
+        $nowTime = strtotime(date("Y-m-d H:i:s"));
+        $dayDiff = ($nowDay-$tdDay);
+        
+
+        if(($dayDiff)>=60*60*24*7){
+          $result = date("Y - m - d",$tdTime);
+        }else if($dayDiff>=60*60*24){
+          $result = ($dayDiff/(60*60*24))."일 전";
+        }else {
+          if($nowTime-$tdTime>=3600 && $nowTime-$tdTime<3600*7){
+            $result = date("H:i",strtotime($tdValue));
+          }else if($nowTime-$tdTime<3600&&$nowTime-$tdTime>=60){
+            $result = floor(($nowTime-$tdTime)/60)."분 전";
+          }else if(60>$nowTime-$tdTime&&$nowTime-$tdTime>=0){
+            $result = "방금전";
+          }else{
+           $result = $nowTime-$tdTime;
+          }
+        }
+        break;
+        default:
+        return $tdValue;
+    }
+
+
+    return $result;
+  }
+
+
+
+
 ?>
 
 
@@ -21,5 +64,5 @@ try {
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <br>
-<h1 class="text-center">자유게시판</h1>
+<h1 class="text-center"><a href="../board/list.php">자유게시판</a></h1>
 <hr>
