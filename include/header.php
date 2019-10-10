@@ -1,15 +1,6 @@
 <?php
-header('Content-Type: text/html; charset=utf-8');
-$dsn = "mysql:host=localhost;port=3306;dbname=php_prtc;charset=utf8";
-try {
-    $db = new PDO($dsn, "pjm", "pjmpjm");
-    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  //  echo "데이터베이스 연결 성공!!<br/>";
-} catch (PDOException $e) {
-    echo $e->getMessage();
-}
-
+//header('Content-Type: text/html; charset=utf-8');
+include("dbconnect.php");
   function tdValueTrs($variable,$tdValue){
     $result = $tdValue;
     $tdTime = strtotime($tdValue);
@@ -63,4 +54,8 @@ try {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <br>
 <h1 class="text-center"><a href="../board/list.php">자유게시판</a></h1>
+<div align="right" class="container"> 
+<a class = "btn btn-outline-primary btn-sm" href="../member/register.php">회원가입</a>
+<a class = "btn btn-outline-info btn-sm" href="../member/login.php">로그인</a>
+</div>
 <hr>

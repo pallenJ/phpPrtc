@@ -22,10 +22,10 @@
                         <label for="boardID">ID</label>
                         <input type="text" class="form-control" id="boardID" name="id" aria-describedby="" placeholder="Enter ID" required>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="boardPW">Password</label>
                         <input type="password" class="form-control" id="boardPW" name="pw" placeholder="Password" required>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label for="boardTitle">제목</label>
                         <input type="text" class="form-control" id="boardTitle" name="title" placeholder="title" required>
