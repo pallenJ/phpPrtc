@@ -1,3 +1,13 @@
+    <?php
+    include("../include/header.php");
+    if(!$login_flag){    
+        echo "<script>"
+        ."alert('로그인 후에 사용가능한 기능입니다.');"
+        ."history.back();"
+        ."</script>";
+        }
+    
+    ?>
 <!DOCTYPE html>
 <html>
 
@@ -5,10 +15,7 @@
     <title></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php
-    include("../include/header.php");
 
-    ?>
 </head>
 
 <body>
@@ -17,11 +24,8 @@
             <form action="register_post.php" method="post">
                 <fieldset>
                     <legend class="btn-primary"><h3 class="text-center">새 글</h3></legend>
+                    <input type="hidden" class="" id="boardID" name="id" aria-describedby="" placeholder="Enter ID" value="<? echo $login_user_id; ?>">
                     
-                    <div class="form-group">
-                        <label for="boardID">ID</label>
-                        <input type="text" class="form-control" id="boardID" name="id" aria-describedby="" placeholder="Enter ID" required>
-                    </div>
                     <!-- <div class="form-group">
                         <label for="boardPW">Password</label>
                         <input type="password" class="form-control" id="boardPW" name="pw" placeholder="Password" required>

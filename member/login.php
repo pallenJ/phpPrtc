@@ -1,6 +1,12 @@
 <?php
 include("../include/header.php");
 
+if($login_flag){
+unset($_SESSION['loginID']);    
+$prevPage = $_SERVER['HTTP_REFERER'];
+header('location:'.$prevPage);
+}
+
 ?>
 <div class="container" align="center">
     <div class="card border-primary mb-5" style="max-width: 40rem;">
