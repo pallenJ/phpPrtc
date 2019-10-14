@@ -26,14 +26,27 @@ class Pagenation{
   public $prev = false;
 
   public function pagingCal(Criteria $cri, $allCnt, $showPage){
-    
+    $maxPage = ceil($allCnt/(real)$cri->amt) ;
     $this->startNum = 1+ floor(($cri->page-1)/$showPage)*$showPage;
-    $this->endNum   = min($this->startNum+$showPage-1, ceil($allCnt/(real)$cri->amt) );
+    $this->endNum   = min($this->startNum+$showPage-1, $maxPage);
     $this->prev = !($this->startNum==1);
-    $this->next = $allCnt>($this->endNum);
+    $this->next = $maxPage>($this->endNum);
   }
 }
 
+function htmlDecode($str){
+  return 
+  str_replace("&lt;","<",
+  str_replace("&gt;",">",
+  str_replace("&quot;","\"",
+  str_replace("&#034;","\"",
+  str_replace("&#039;","\'",
+  str_replace("&nbsp;"," ",
+  str_replace("&amp;","&",
+
+  $str
+  )))))));
+}
 
 function tdValueTrs($variable, $tdValue)
 {

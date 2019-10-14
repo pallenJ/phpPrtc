@@ -11,7 +11,7 @@
     if (isset($_GET['pg']) && !empty($_GET['pg'])) {
         $boardPageNum = $_GET['pg'];
     }
-    $amount = 5;
+    $amount = 15;
     //echo "<script>alert('".$boardPageNum."');</script>";
     $cri = new Criteria();
     $cri->setPage($boardPageNum);
@@ -24,7 +24,7 @@
     $listAllCNT = $result[0][0];
 
     $pagenation = new Pagenation();
-    $pagenation->pagingCal($cri,$listAllCNT,3); 
+    $pagenation->pagingCal($cri,$listAllCNT,10); 
 
    // echo "<script>alert('" . $listAllCNT . "');</script>";
     ?>
@@ -90,18 +90,21 @@
 
                 <div align="center" class="pull-center">
                     <ul class="pagination">
+                        <?if($pagenation->prev){ ?>
                         <li class="page-item">
                             <a class="page-link" href="list.php?pg=<? echo $pagenation->startNum-1; ?>">&laquo;</a>
                         </li>
+                        <?} ?>
                         <? for ($i = $pagenation->startNum; $i <= $pagenation->endNum; $i++) { ?>
                             <li class="page-item <? if ($boardPageNum == $i) echo 'active'; ?>">
                                 <a class="page-link" href="list.php?pg=<? echo $i ?>"><? echo $i; ?></a>
                             </li>
                         <? } ?>
-
+                        <?if($pagenation->next){ ?>
                         <li class="page-item">
                             <a class="page-link" href="list.php?pg=<? echo $pagenation->endNum+1; ?>">&raquo;</a>
                         </li>
+                        <? } ?>
                     </ul>
                 </div>
 
